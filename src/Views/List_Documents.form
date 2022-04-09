@@ -50,7 +50,7 @@
                           <Component id="JPBtn_Crud" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="rSMTextFull1" min="-2" max="-2" attributes="0"/>
+                              <Component id="Buscar_Text" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -59,6 +59,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jScrollPane1" alignment="0" min="-2" pref="1327" max="-2" attributes="0"/>
                               <Component id="jLabel2" alignment="0" min="-2" pref="594" max="-2" attributes="0"/>
+                              <Component id="JLabelInfo" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -76,7 +77,7 @@
                       <Group type="102" attributes="0">
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="rSMTextFull1" min="-2" max="-2" attributes="0"/>
+                          <Component id="Buscar_Text" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="JPBtn_Crud" max="32767" attributes="0"/>
@@ -84,8 +85,10 @@
                       </Group>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="338" max="-2" attributes="0"/>
-                  <EmptySpace pref="224" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="309" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <Component id="JLabelInfo" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="226" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -106,16 +109,7 @@
                   </Border>
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="8" rowCount="4">
-                    <Column editable="false" title="Central" type="java.lang.String"/>
-                    <Column editable="false" title="N&#xb0; Equipo" type="java.lang.String"/>
-                    <Column editable="false" title="N&#xb0; Documento" type="java.lang.String"/>
-                    <Column editable="false" title="Vigencia" type="java.lang.String"/>
-                    <Column editable="false" title="Caduca" type="java.lang.String"/>
-                    <Column editable="false" title="Tipo Documento" type="java.lang.String"/>
-                    <Column editable="false" title="Descripcion" type="java.lang.String"/>
-                    <Column editable="false" title="Status" type="java.lang.String"/>
-                  </Table>
+                  <Table columnCount="0" rowCount="0"/>
                 </Property>
                 <Property name="colorBackgoundHead" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="63" red="16" type="rgb"/>
@@ -142,48 +136,7 @@
                   <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                  <TableColumnModel selectionModel="0">
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="false">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="70" resizable="false">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="70" resizable="false">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="70" resizable="false">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="70" resizable="false">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="90" resizable="false">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="120" resizable="false">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="60" resizable="false">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                  </TableColumnModel>
+                  <TableColumnModel selectionModel="0"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Franklin Gothic Medium Cond" size="12" style="0"/>
@@ -205,6 +158,9 @@
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="JTable_PTMouseClicked"/>
                 <EventHandler event="componentResized" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="JTable_PTComponentResized"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
@@ -244,7 +200,7 @@
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Component id="Btn_Update" min="-2" pref="186" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="rSButton4" min="-2" pref="186" max="-2" attributes="0"/>
+                      <Component id="Btn_Cambiar" min="-2" pref="186" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="rSButton3" min="-2" pref="186" max="-2" attributes="0"/>
                       <EmptySpace pref="25" max="32767" attributes="0"/>
@@ -257,7 +213,7 @@
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="Btn_Update" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="rSButton4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Btn_Cambiar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="rSButton3" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="14" max="32767" attributes="0"/>
@@ -286,7 +242,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_UpdateActionPerformed"/>
               </Events>
             </Component>
-            <Component class="rojeru_san.RSButton" name="rSButton4">
+            <Component class="rojeru_san.RSButton" name="Btn_Cambiar">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="99" green="99" red="0" type="rgb"/>
@@ -294,7 +250,7 @@
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="null"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="VER DOCUMENTO"/>
+                <Property name="text" type="java.lang.String" value="CAMBIAR ESTADO"/>
                 <Property name="colorHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="66" green="66" red="0" type="rgb"/>
                 </Property>
@@ -302,6 +258,9 @@
                   <Font name="Franklin Gothic Demi Cond" size="14" style="0"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_CambiarActionPerformed"/>
+              </Events>
             </Component>
             <Component class="rojeru_san.RSButton" name="rSButton3">
               <Properties>
@@ -322,7 +281,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="rojeru_san.RSMTextFull" name="rSMTextFull1">
+        <Component class="rojeru_san.RSMTextFull" name="Buscar_Text">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -335,6 +294,9 @@
             </Property>
             <Property name="placeholder" type="java.lang.String" value="Escribe aqui..................."/>
           </Properties>
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="Buscar_TextKeyPressed"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JPanel" name="JPBtn_Add">
           <Properties>
@@ -386,6 +348,13 @@
             </Component>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JLabel" name="JLabelInfo">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Franklin Gothic Medium Cond" size="18" style="0"/>
+            </Property>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JLabel" name="BG_LIST">

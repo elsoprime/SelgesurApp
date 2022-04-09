@@ -129,7 +129,7 @@ public class CRUD extends dbconnection {
         Categoria_Documentos Dat = null;
 
         try {
-            PST = getConexion().prepareStatement("SELECT * FROM tipo_trabajo");
+            PST = getConexion().prepareStatement("SELECT * FROM categoria_documento");
             RS = PST.executeQuery();
 
             Dat = new Categoria_Documentos();
@@ -139,7 +139,7 @@ public class CRUD extends dbconnection {
 
             while (RS.next()) {
                 Dat = new Categoria_Documentos();
-                Dat.setId_CategoriaD(RS.getInt("Id_Trabajo"));
+                Dat.setId_CategoriaD(RS.getInt("Id_Categoria"));
                 Dat.setCategorias(RS.getString("CATEGORIA"));
                 Datos.add(Dat);
             }
@@ -159,13 +159,13 @@ public class CRUD extends dbconnection {
         ResultSet RS = null;
         String Mensaje = "";
         try {
-            PST = getConexion().prepareCall("{CALL REGISTRAR_DOCUMENTOS (?, ?, ?, ?, ?, ?, ?, ?)}");            
+            PST = getConexion().prepareCall("{CALL REGISTRAR_DOCUMENTOS (?, ?, ?, ?, ?, ?, ?, ?)}");
             PST.setString(1, Documento.getNumero());
             PST.setString(2, Documento.getDescripcion());
             PST.setDate(3, (Date) Documento.getVigencia());
             PST.setDate(4, (Date) Documento.getTermino());
-            PST.setInt(5, Documento.getId_Equipo());
-            PST.setInt(6, Documento.getId_Central());
+            PST.setInt(5, Documento.getId_Central());
+            PST.setInt(6, Documento.getId_Equipo());
             PST.setInt(7, Documento.getId_CategoriaD());
             PST.setInt(8, Estado.getId_Estado());
 
@@ -178,7 +178,7 @@ public class CRUD extends dbconnection {
                     Texto.requestFocus();
                 } else {
                     /*-- En esta Sección se Ejecuta la Insercción del Registro Ejecutada en nuestro PROCEDIMIENTO ALMACENADO --*/
-                    JOptionPane.showMessageDialog(null, Mensaje, "DOCUMENTO REGISTRADO", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, Mensaje, "OPERACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE);
                     Evento.DesactivarJText(Panel);
                     System.out.println(Mensaje);
                 }
@@ -195,35 +195,100 @@ public class CRUD extends dbconnection {
 
     /*===== VISTAS PARA TABLAS DE DATOS =====*/
     public boolean cargarDocumentos(JTable Tabla) {
+        String[] Encabezado = {"Central", " N° Equipo", "N° Documento", "Vigencia", "Termino", "Categoria Documento", "Descripcion", "Estado"};
+        String[] Fila = new String[20];
+
         PreparedStatement PST = null;
-        ResultSet R = null;
+        ResultSet RS = null;
         try {
-            DefaultTableModel Modelo = new DefaultTableModel();
+            DefaultTableModel Modelo = new DefaultTableModel(null, Encabezado){
+                @Override
+                public boolean isCellEditable(int Fila, int Columna) {
+                    if (Columna==8){
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            };
             Tabla.setModel(Modelo);
             String ConsultaTabla = "SELECT * FROM vista_documentos";
             PST = getConexion().prepareStatement(ConsultaTabla);
-            R = PST.executeQuery();
-            ResultSetMetaData DatosMeta = R.getMetaData();
-            int CantColumn = DatosMeta.getColumnCount();
-            Modelo.addColumn("Central");
-            Modelo.addColumn("N° Equipo");
-            Modelo.addColumn("N° Documento");
-            Modelo.addColumn("Vigencia");
-            Modelo.addColumn("Termino");
-            Modelo.addColumn("Categoria Documento");
-            Modelo.addColumn("Descripción");
-            Modelo.addColumn("Estado");
-            while (R.next()) {
-                Object[] Filas = new Object[CantColumn];
-                for (int i = 0; i < CantColumn; i++) {
-                    Filas[i] = R.getObject(i + 1);
-                }
-                Modelo.addRow(Filas);
-                Tabla.getColumnModel().getColumn(3).setCellRenderer(new TimestampCellRenderer());
-                Tabla.getColumnModel().getColumn(4).setCellRenderer(new TimestampCellRenderer());
+            RS = PST.executeQuery();
+            while (RS.next()) {
+                Fila[0] = RS.getString("CENTRAL");
+                Fila[1] = RS.getString("NUMEROASIGNADO");
+                Fila[2] = RS.getString("NUMERODOC");
+                Fila[3] = RS.getString("FECHAVIGENCIA");
+                Fila[4] = RS.getString("FECHATERMINO");
+                Fila[5] = RS.getString("CATEGORIA");
+                Fila[6] = RS.getString("DESCRIPCION");
+                Fila[7] = RS.getString("ESTADO");
+                Modelo.addRow(Fila);
             }
+            Modelo.addRow(Fila);
+            Tabla.setModel(Modelo);
+            Tabla.getColumnModel().getColumn(0).setPreferredWidth(50);
+            Tabla.getColumnModel().getColumn(1).setPreferredWidth(50);
+            Tabla.getColumnModel().getColumn(2).setPreferredWidth(50);
+            Tabla.getColumnModel().getColumn(3).setPreferredWidth(50);
+            Tabla.getColumnModel().getColumn(4).setPreferredWidth(50);
+            Tabla.getColumnModel().getColumn(5).setPreferredWidth(100);
+            Tabla.getColumnModel().getColumn(6).setPreferredWidth(150);
+            Tabla.getColumnModel().getColumn(7).setPreferredWidth(90);
+            return true;
         } catch (SQLException e) {
             System.out.println("ERROR con la Consulta " + e);
+        }
+        return false;
+    }
+
+    public boolean busquedaDocTabla(Categoria_Documentos Documento, JTable Tabla) {
+        String[] Encabezado = {"Central", " N° Equipo", "N° Documento", "Vigencia", "Termino", "Categoria Documento", "Descripcion", "Estado"};
+        String[] Fila = new String[20];
+
+        DefaultTableModel Modelo = new DefaultTableModel(null, Encabezado){
+                @Override
+                public boolean isCellEditable(int Fila, int Columna) {
+                    if (Columna==8){
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            };
+        
+        PreparedStatement PST = null;
+        ResultSet RS = null;
+        try {
+            PST = getConexion().prepareCall("{CALL BUSQUEDA_DOCUMENTOS(?, ?)}");
+            PST.setString(1, Documento.getBuscar());
+            PST.setString(2, "BUSCAR_DOCUMENTO");
+            RS = PST.executeQuery();
+            while (RS.next()) {
+                Fila[0] = RS.getString("CENTRAL");
+                Fila[1] = RS.getString("NUMEROASIGNADO");
+                Fila[2] = RS.getString("NUMERODOC");
+                Fila[3] = RS.getString("FECHAVIGENCIA");
+                Fila[4] = RS.getString("FECHATERMINO");
+                Fila[5] = RS.getString("CATEGORIA");
+                Fila[6] = RS.getString("DESCRIPCION");
+                Fila[7] = RS.getString("ESTADO");
+                Modelo.addRow(Fila);
+            }
+            Tabla.setModel(Modelo);
+            Tabla.getColumnModel().getColumn(0).setPreferredWidth(50);
+            Tabla.getColumnModel().getColumn(1).setPreferredWidth(50);
+            Tabla.getColumnModel().getColumn(2).setPreferredWidth(50);
+            Tabla.getColumnModel().getColumn(3).setPreferredWidth(50);
+            Tabla.getColumnModel().getColumn(4).setPreferredWidth(50);
+            Tabla.getColumnModel().getColumn(5).setPreferredWidth(100);
+            Tabla.getColumnModel().getColumn(6).setPreferredWidth(150);
+            Tabla.getColumnModel().getColumn(7).setPreferredWidth(90);
+            return true;
+        } catch (SQLException e) {
+            System.out.println("ERROR AL GENERAR CONSULTA, Posiblemente exista un error con el Servidor de la Base de datos " + e);
+            JOptionPane.showMessageDialog(null, "ERROR CON LA BD,  Es posible que exista un error de conexión con el servidor", "Advertencia del Sistema, Contacte al Administrador del Sistema", JOptionPane.ERROR_MESSAGE);
         }
         return false;
     }

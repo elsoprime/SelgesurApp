@@ -4,6 +4,16 @@
  */
 package Views;
 
+import Components.Functions;
+import Controller.CRUD;
+import Models.Categoria_Documentos;
+import Models.Centrales;
+import Models.Documentos;
+import Models.Equipos_Gen;
+import Models.Estado_Documentos;
+import java.awt.event.ItemEvent;
+import javax.swing.DefaultComboBoxModel;
+
 /**
  *
  * @author ELSO
@@ -15,6 +25,19 @@ public class UpdateDocumentsApp extends javax.swing.JDialog {
      * 
      * 
      */
+      /*Instancias de Objetos*/
+    Functions Estados = new Functions();
+    CRUD cargarCombos = new CRUD();
+    Documentos Documento = new Documentos();
+    Estado_Documentos Status = new Estado_Documentos();
+    Categoria_Documentos Catego = new Categoria_Documentos();
+    
+     /* === VARIABLES PARA FOREING KEYS ==*/
+    int Id_Central = 0;
+    int Id_Equipo = 0;
+    int Id_CategoriaDoc = 0;
+    int Id_Estado = 0;    
+    
     public UpdateDocumentsApp(){
         
     }
@@ -26,6 +49,15 @@ public class UpdateDocumentsApp extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setTitle("MÓDULO DE REGISTROS DE DOCUMENTOS DE TRABAJOS");
+        //Estados.DesactivarJText(JPanel_Body);
+      /*  DefaultComboBoxModel modCentral = new DefaultComboBoxModel(cargarCombos.cargarCentrales());
+        DefaultComboBoxModel modEstado = new DefaultComboBoxModel(cargarCombos.cargarEstadosDocumentos(Status.getId_Estado()));
+        DefaultComboBoxModel modCategoria = new DefaultComboBoxModel(cargarCombos.cargarCatergoriaDocumentos(Catego.getId_CategoriaD()));
+        JComboCentral.setModel(modCentral);
+        JComboEstado.setModel(modEstado);
+        JComboTipo.setModel(modCategoria);
+        */
+        Estados.DesactivarJText(JPanel_Body);
     }
 
     /**
@@ -47,14 +79,13 @@ public class UpdateDocumentsApp extends javax.swing.JDialog {
         Fecha_Caducacion_Label = new javax.swing.JLabel();
         JComboCentral = new javax.swing.JComboBox<>();
         JComboEquipo = new javax.swing.JComboBox<>();
-        JComboTipo_Text = new javax.swing.JComboBox<>();
+        JComboTipo = new javax.swing.JComboBox<>();
         JCombo_Descripcion_Text = new javax.swing.JComboBox<>();
         Fecha_Vigencia_Text = new com.toedter.calendar.JDateChooser();
         Fecha_Caduca_Text = new com.toedter.calendar.JDateChooser();
         N_Documento_Label = new javax.swing.JLabel();
         Numero_Gen = new rojeru_san.RSMTextFull();
-        Central_Label8 = new javax.swing.JLabel();
-        JComboEstado = new javax.swing.JComboBox<>();
+        Id = new javax.swing.JLabel();
         JPanelActualizar = new javax.swing.JPanel();
         Titulo1 = new javax.swing.JLabel();
         Central_Label1 = new javax.swing.JLabel();
@@ -73,6 +104,8 @@ public class UpdateDocumentsApp extends javax.swing.JDialog {
         Carga = new rojeru_san.RSMTextFull();
         Cancela = new rojeru_san.RSMTextFull();
         Fecha_Ejecucion = new com.toedter.calendar.JDateChooser();
+        Central_Label8 = new javax.swing.JLabel();
+        JComboEstado = new javax.swing.JComboBox<>();
         Banner_Header_Label = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
 
@@ -114,16 +147,31 @@ public class UpdateDocumentsApp extends javax.swing.JDialog {
         JComboCentral.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 14)); // NOI18N
         JComboCentral.setForeground(new java.awt.Color(51, 51, 51));
         JComboCentral.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONA UNA CENTRAL" }));
+        JComboCentral.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                JComboCentralItemStateChanged(evt);
+            }
+        });
 
         JComboEquipo.setBackground(new java.awt.Color(255, 255, 255));
         JComboEquipo.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 14)); // NOI18N
         JComboEquipo.setForeground(new java.awt.Color(51, 51, 51));
         JComboEquipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONA UN EQUIPO" }));
+        JComboEquipo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                JComboEquipoItemStateChanged(evt);
+            }
+        });
 
-        JComboTipo_Text.setBackground(new java.awt.Color(255, 255, 255));
-        JComboTipo_Text.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 14)); // NOI18N
-        JComboTipo_Text.setForeground(new java.awt.Color(51, 51, 51));
-        JComboTipo_Text.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONA UNA CATEGORÍA" }));
+        JComboTipo.setBackground(new java.awt.Color(255, 255, 255));
+        JComboTipo.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 14)); // NOI18N
+        JComboTipo.setForeground(new java.awt.Color(51, 51, 51));
+        JComboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONA UNA CATEGORÍA" }));
+        JComboTipo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                JComboTipoItemStateChanged(evt);
+            }
+        });
 
         JCombo_Descripcion_Text.setBackground(new java.awt.Color(255, 255, 255));
         JCombo_Descripcion_Text.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 14)); // NOI18N
@@ -146,17 +194,10 @@ public class UpdateDocumentsApp extends javax.swing.JDialog {
 
         Numero_Gen.setBackground(new java.awt.Color(255, 255, 255));
         Numero_Gen.setForeground(new java.awt.Color(51, 51, 51));
-        Numero_Gen.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 12)); // NOI18N
+        Numero_Gen.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 12)); // NOI18N
         Numero_Gen.setPlaceholder("Ingresa N° del Documento...");
 
-        Central_Label8.setFont(new java.awt.Font("Franklin Gothic Demi Cond", 0, 14)); // NOI18N
-        Central_Label8.setForeground(new java.awt.Color(102, 102, 102));
-        Central_Label8.setText("ESTADO DEL DOCUMENTO:");
-
-        JComboEstado.setBackground(new java.awt.Color(255, 255, 255));
-        JComboEstado.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 14)); // NOI18N
-        JComboEstado.setForeground(new java.awt.Color(51, 51, 51));
-        JComboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONA UN ESTADO", "EN TRAMITACIÓN", "APROBADO", "TERMINADO", "PAUSADO", "CANCELADO" }));
+        Id.setText("jLabel1");
 
         javax.swing.GroupLayout JPanel_BodyLayout = new javax.swing.GroupLayout(JPanel_Body);
         JPanel_Body.setLayout(JPanel_BodyLayout);
@@ -171,7 +212,7 @@ public class UpdateDocumentsApp extends javax.swing.JDialog {
                             .addComponent(JComboCentral, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(65, 65, 65)
                         .addGroup(JPanel_BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JComboTipo_Text, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JComboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Tipo_Trabajo_Label)))
                     .addGroup(JPanel_BodyLayout.createSequentialGroup()
                         .addGroup(JPanel_BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,18 +225,15 @@ public class UpdateDocumentsApp extends javax.swing.JDialog {
                             .addComponent(JCombo_Descripcion_Text, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(65, 65, 65)
                 .addGroup(JPanel_BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(JPanel_BodyLayout.createSequentialGroup()
-                        .addGroup(JPanel_BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Numero_Gen, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(N_Documento_Label)
-                            .addComponent(JComboEstado, 0, 190, Short.MAX_VALUE))
-                        .addGap(51, 51, 51)
-                        .addGroup(JPanel_BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Fecha_Caducacion_Label)
-                            .addComponent(Fecha_Vigencia_Text, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Fecha_Caduca_Text, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Fecha_Vigencia_Label)))
-                    .addComponent(Central_Label8))
+                    .addComponent(Numero_Gen, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(N_Documento_Label)
+                    .addComponent(Id))
+                .addGap(51, 51, 51)
+                .addGroup(JPanel_BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Fecha_Caducacion_Label)
+                    .addComponent(Fecha_Vigencia_Text, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Fecha_Caduca_Text, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Fecha_Vigencia_Label))
                 .addContainerGap(97, Short.MAX_VALUE))
         );
         JPanel_BodyLayout.setVerticalGroup(
@@ -216,13 +254,11 @@ public class UpdateDocumentsApp extends javax.swing.JDialog {
                     .addGroup(JPanel_BodyLayout.createSequentialGroup()
                         .addComponent(Numero_Gen, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(JPanel_BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Central_Label8)
-                            .addComponent(Fecha_Caducacion_Label)))
+                        .addComponent(Fecha_Caducacion_Label))
                     .addGroup(JPanel_BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JPanel_BodyLayout.createSequentialGroup()
                             .addGroup(JPanel_BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(JComboTipo_Text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(JComboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(JComboCentral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(18, 18, 18)
                             .addGroup(JPanel_BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -234,10 +270,9 @@ public class UpdateDocumentsApp extends javax.swing.JDialog {
                 .addGroup(JPanel_BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(JPanel_BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(JComboEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(JCombo_Descripcion_Text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(JPanel_BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(Fecha_Caduca_Text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(JComboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(JCombo_Descripcion_Text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Id))
+                    .addComponent(Fecha_Caduca_Text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
@@ -320,6 +355,20 @@ public class UpdateDocumentsApp extends javax.swing.JDialog {
         Fecha_Ejecucion.setForeground(new java.awt.Color(51, 51, 51));
         Fecha_Ejecucion.setFont(new java.awt.Font("Arial Narrow", 0, 14)); // NOI18N
 
+        Central_Label8.setFont(new java.awt.Font("Franklin Gothic Demi Cond", 0, 14)); // NOI18N
+        Central_Label8.setForeground(new java.awt.Color(102, 102, 102));
+        Central_Label8.setText("ESTADO DEL DOCUMENTO:");
+
+        JComboEstado.setBackground(new java.awt.Color(255, 255, 255));
+        JComboEstado.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 14)); // NOI18N
+        JComboEstado.setForeground(new java.awt.Color(51, 51, 51));
+        JComboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONA UN ESTADO" }));
+        JComboEstado.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                JComboEstadoItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout JPanelActualizarLayout = new javax.swing.GroupLayout(JPanelActualizar);
         JPanelActualizar.setLayout(JPanelActualizarLayout);
         JPanelActualizarLayout.setHorizontalGroup(
@@ -327,41 +376,48 @@ public class UpdateDocumentsApp extends javax.swing.JDialog {
             .addGroup(JPanelActualizarLayout.createSequentialGroup()
                 .addGap(83, 83, 83)
                 .addGroup(JPanelActualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Titulo1)
-                    .addComponent(Vigencia, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(JPanelActualizarLayout.createSequentialGroup()
-                        .addComponent(Central_Label1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44)
                         .addGroup(JPanelActualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Central_Label2)
-                            .addComponent(Inicio_Manten, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Central_Label1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Central_Label5)
                             .addComponent(Final_Manten, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(56, 56, 56)
+                        .addGap(30, 30, 30)
+                        .addGroup(JPanelActualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Carga, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Central_Label4)
+                            .addComponent(Central_Label2)
+                            .addComponent(Inicio_Manten, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)
                         .addGroup(JPanelActualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Central_Label3)
-                            .addComponent(Central_Label4)
                             .addComponent(Vacio, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Carga, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(56, 56, 56)
-                        .addGroup(JPanelActualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(JPanelActualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(Central_Label6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(Cancela, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE))
-                            .addComponent(Central_Label7, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Fecha_Ejecucion, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
+                            .addComponent(Central_Label6, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Cancela, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(Titulo1)
+                    .addComponent(Vigencia, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(JPanelActualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Btn_Actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(93, 93, 93))
+                    .addGroup(JPanelActualizarLayout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addGroup(JPanelActualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Central_Label7, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Fecha_Ejecucion, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(JPanelActualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(JPanelActualizarLayout.createSequentialGroup()
+                                .addComponent(JComboEstado, 0, 190, Short.MAX_VALUE)
+                                .addGap(66, 66, 66)
+                                .addComponent(Btn_Actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Central_Label8)))
+                    .addGroup(JPanelActualizarLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(30, 30, 30))
         );
         JPanelActualizarLayout.setVerticalGroup(
             JPanelActualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPanelActualizarLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(JPanelActualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Fecha_Ejecucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(JPanelActualizarLayout.createSequentialGroup()
                         .addGroup(JPanelActualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Titulo1)
@@ -369,25 +425,29 @@ public class UpdateDocumentsApp extends javax.swing.JDialog {
                         .addGap(24, 24, 24)
                         .addGroup(JPanelActualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Central_Label1)
-                            .addComponent(Central_Label6)
                             .addComponent(Central_Label2)
-                            .addComponent(Central_Label3))
+                            .addComponent(Central_Label3)
+                            .addComponent(Central_Label7)
+                            .addComponent(Central_Label8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(JPanelActualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Vigencia, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Inicio_Manten, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Vacio, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Cancela, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Btn_Actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(33, 33, 33)
-                        .addGroup(JPanelActualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Central_Label5)
-                            .addComponent(Central_Label4)
-                            .addComponent(Central_Label7))
-                        .addGap(18, 18, 18)
-                        .addGroup(JPanelActualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Final_Manten, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Carga, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(JPanelActualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Btn_Actualizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(JPanelActualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(Vigencia, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Inicio_Manten, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Vacio, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(Fecha_Ejecucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JComboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addGroup(JPanelActualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Central_Label5)
+                    .addComponent(Central_Label4)
+                    .addComponent(Central_Label6))
+                .addGap(18, 18, 18)
+                .addGroup(JPanelActualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Final_Manten, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Carga, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Cancela, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
@@ -414,6 +474,42 @@ public class UpdateDocumentsApp extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void JComboCentralItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JComboCentralItemStateChanged
+          /* if (evt.getStateChange() == ItemEvent.SELECTED) {
+            Centrales Equipo = (Centrales) JComboCentral.getSelectedItem();
+            DefaultComboBoxModel modEquipo = new DefaultComboBoxModel(cargarCombos.cargarEquipos(Equipo.getId_Central()));
+            JComboEquipo.setModel(modEquipo);
+            Id_Central = Equipo.getId_Central();
+            System.out.println("El Id de la Central es: " + Id_Central);
+
+        } */
+    }//GEN-LAST:event_JComboCentralItemStateChanged
+
+    private void JComboEquipoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JComboEquipoItemStateChanged
+       /*    if (evt.getStateChange() == ItemEvent.SELECTED) {
+            Equipos_Gen Equipo = (Equipos_Gen) JComboEquipo.getSelectedItem();
+            Id_Equipo = Equipo.getId_Equipo();
+            System.out.println("El Id del Equipo es: " + Id_Equipo);
+
+        } */
+    }//GEN-LAST:event_JComboEquipoItemStateChanged
+
+    private void JComboEstadoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JComboEstadoItemStateChanged
+     /*   if (evt.getStateChange() == ItemEvent.SELECTED) {
+            Estado_Documentos Estado = (Estado_Documentos) JComboEstado.getSelectedItem();
+            Id_Estado = Estado.getId_Estado();
+            System.out.println("El Id Seleccionado del Estado Documento es: " + Id_Estado);
+        } */
+    }//GEN-LAST:event_JComboEstadoItemStateChanged
+
+    private void JComboTipoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JComboTipoItemStateChanged
+     /*    if (evt.getStateChange() == ItemEvent.SELECTED) {
+            Categoria_Documentos Tipo = (Categoria_Documentos) JComboTipo.getSelectedItem();
+            Id_CategoriaDoc = Tipo.getId_CategoriaD();
+            System.out.println("El Id Seleccionado Correspondiente a la Categoria del Documento es: " + Id_CategoriaDoc);
+        } */
+    }//GEN-LAST:event_JComboTipoItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -479,11 +575,12 @@ public class UpdateDocumentsApp extends javax.swing.JDialog {
     private javax.swing.JLabel Fecha_Vigencia_Label;
     public static com.toedter.calendar.JDateChooser Fecha_Vigencia_Text;
     private rojeru_san.RSMTextFull Final_Manten;
+    public static javax.swing.JLabel Id;
     private rojeru_san.RSMTextFull Inicio_Manten;
     public static javax.swing.JComboBox<String> JComboCentral;
     public static javax.swing.JComboBox<String> JComboEquipo;
     public static javax.swing.JComboBox<String> JComboEstado;
-    public static javax.swing.JComboBox<String> JComboTipo_Text;
+    public static javax.swing.JComboBox<String> JComboTipo;
     public static javax.swing.JComboBox<String> JCombo_Descripcion_Text;
     private javax.swing.JPanel JPanelActualizar;
     private javax.swing.JPanel JPanel_Body;

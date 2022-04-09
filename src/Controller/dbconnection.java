@@ -16,7 +16,7 @@ public class dbconnection {
     
      // Atributos de la Conexion
     private String USERNAME = "root";
-    private String PASSWORD = "";
+    private String PASSWORD = "123456";
     private String HOST = "localhost";
     private String DATABASE = "dbselgesur";
     private String PORT = "3306";

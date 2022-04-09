@@ -53,7 +53,7 @@
                           </Group>
                           <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="JComboTipo_Text" min="-2" pref="320" max="-2" attributes="0"/>
+                              <Component id="JComboTipo" min="-2" pref="320" max="-2" attributes="0"/>
                               <Component id="Tipo_Trabajo_Label" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -72,21 +72,16 @@
                   </Group>
                   <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="Numero_Gen" alignment="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="N_Documento_Label" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="JComboEstado" pref="190" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="Fecha_Caducacion_Label" min="-2" max="-2" attributes="0"/>
-                              <Component id="Fecha_Vigencia_Text" min="-2" pref="183" max="-2" attributes="0"/>
-                              <Component id="Fecha_Caduca_Text" alignment="0" min="-2" pref="183" max="-2" attributes="0"/>
-                              <Component id="Fecha_Vigencia_Label" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Component id="Central_Label8" min="-2" max="-2" attributes="0"/>
+                      <Component id="Numero_Gen" alignment="0" min="-2" pref="190" max="-2" attributes="0"/>
+                      <Component id="N_Documento_Label" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="Id" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="Fecha_Caducacion_Label" min="-2" max="-2" attributes="0"/>
+                      <Component id="Fecha_Vigencia_Text" min="-2" pref="183" max="-2" attributes="0"/>
+                      <Component id="Fecha_Caduca_Text" alignment="0" min="-2" pref="183" max="-2" attributes="0"/>
+                      <Component id="Fecha_Vigencia_Label" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="97" max="32767" attributes="0"/>
               </Group>
@@ -113,15 +108,12 @@
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="Numero_Gen" min="-2" pref="31" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="Central_Label8" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="Fecha_Caducacion_Label" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="Fecha_Caducacion_Label" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="JComboTipo_Text" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="JComboTipo" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="JComboCentral" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -140,11 +132,9 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="JComboEquipo" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="JCombo_Descripcion_Text" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Id" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                          <Component id="Fecha_Caduca_Text" min="-2" max="-2" attributes="0"/>
-                          <Component id="JComboEstado" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="Fecha_Caduca_Text" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="30" max="32767" attributes="0"/>
               </Group>
@@ -246,6 +236,9 @@
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="JComboCentralItemStateChanged"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -268,12 +261,15 @@
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="JComboEquipoItemStateChanged"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JComboBox" name="JComboTipo_Text">
+        <Component class="javax.swing.JComboBox" name="JComboTipo">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -290,6 +286,9 @@
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="JComboTipoItemStateChanged"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -391,7 +390,7 @@
               <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Franklin Gothic Medium" size="12" style="0"/>
+              <Font name="Franklin Gothic Medium Cond" size="12" style="0"/>
             </Property>
             <Property name="placeholder" type="java.lang.String" value="Ingresa N&#xb0; del Documento..."/>
           </Properties>
@@ -399,41 +398,11 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="Central_Label8">
+        <Component class="javax.swing.JLabel" name="Id">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Franklin Gothic Demi Cond" size="14" style="0"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="66" green="66" red="66" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="ESTADO DEL DOCUMENTO:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JComboBox" name="JComboEstado">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Franklin Gothic Medium Cond" size="14" style="0"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="33" green="33" red="33" type="rgb"/>
-            </Property>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="6">
-                <StringItem index="0" value="SELECCIONA UN ESTADO"/>
-                <StringItem index="1" value="EN TRAMITACI&#xd3;N"/>
-                <StringItem index="2" value="APROBADO"/>
-                <StringItem index="3" value="TERMINADO"/>
-                <StringItem index="4" value="PAUSADO"/>
-                <StringItem index="5" value="CANCELADO"/>
-              </StringArray>
-            </Property>
+            <Property name="text" type="java.lang.String" value="jLabel1"/>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
           </AuxValues>
         </Component>
@@ -457,41 +426,53 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="Titulo1" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="Vigencia" min="-2" pref="136" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="Central_Label1" min="-2" pref="136" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="Central_Label2" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="Inicio_Manten" alignment="0" min="-2" pref="136" max="-2" attributes="0"/>
+                              <Component id="Central_Label1" alignment="0" min="-2" pref="136" max="-2" attributes="0"/>
                               <Component id="Central_Label5" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="Final_Manten" alignment="0" min="-2" pref="136" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="Carga" min="-2" pref="136" max="-2" attributes="0"/>
+                              <Component id="Central_Label4" min="-2" max="-2" attributes="0"/>
+                              <Component id="Central_Label2" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="Inicio_Manten" alignment="0" min="-2" pref="136" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="Central_Label3" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="Central_Label4" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="Vacio" alignment="0" min="-2" pref="136" max="-2" attributes="0"/>
-                              <Component id="Carga" alignment="0" min="-2" pref="136" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="Central_Label6" max="32767" attributes="0"/>
-                                  <Component id="Cancela" pref="136" max="32767" attributes="0"/>
-                              </Group>
-                              <Component id="Central_Label7" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                              <Component id="Fecha_Ejecucion" alignment="0" min="-2" pref="151" max="-2" attributes="0"/>
+                              <Component id="Central_Label6" min="-2" pref="136" max="-2" attributes="0"/>
+                              <Component id="Cancela" min="-2" pref="136" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <Component id="Titulo1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="Vigencia" min="-2" pref="136" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="140" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel2" min="-2" pref="149" max="-2" attributes="0"/>
-                      <Component id="Btn_Actualizar" min="-2" pref="185" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="Central_Label7" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="Fecha_Ejecucion" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="JComboEstado" pref="190" max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+                                  <Component id="Btn_Actualizar" min="-2" pref="185" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="Central_Label8" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="jLabel2" min="-2" pref="149" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -500,7 +481,6 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="Fecha_Ejecucion" min="-2" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="Titulo1" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -509,30 +489,35 @@
                           <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="Central_Label1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="Central_Label6" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="Central_Label2" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="Central_Label3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Central_Label7" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Central_Label8" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="Vigencia" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                              <Component id="Inicio_Manten" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                              <Component id="Vacio" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                              <Component id="Cancela" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                              <Component id="Btn_Actualizar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="Central_Label5" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="Central_Label4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="Central_Label7" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="Final_Manten" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                              <Component id="Carga" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="Btn_Actualizar" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="Vigencia" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                  <Component id="Inicio_Manten" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                  <Component id="Vacio" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
+                      <Component id="Fecha_Ejecucion" min="-2" max="-2" attributes="0"/>
+                      <Component id="JComboEstado" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="Central_Label5" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Central_Label4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Central_Label6" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="Final_Manten" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="Carga" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="Cancela" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="17" max="32767" attributes="0"/>
               </Group>
@@ -751,6 +736,42 @@
               <Font name="Arial Narrow" size="14" style="0"/>
             </Property>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="Central_Label8">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Franklin Gothic Demi Cond" size="14" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="66" green="66" red="66" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="ESTADO DEL DOCUMENTO:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="JComboEstado">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Franklin Gothic Medium Cond" size="14" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="33" type="rgb"/>
+            </Property>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="1">
+                <StringItem index="0" value="SELECCIONA UN ESTADO"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="JComboEstadoItemStateChanged"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

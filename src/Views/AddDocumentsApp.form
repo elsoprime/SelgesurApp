@@ -36,7 +36,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="128" width="1280" height="460"/>
+          <AbsoluteConstraints x="0" y="128" width="1280" height="320"/>
         </Constraint>
       </Constraints>
 
@@ -44,75 +44,42 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="Btn_Guardar" min="-2" pref="182" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="Btn_Nuevo" min="-2" pref="182" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="Titulo1" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="Titulo1" max="32767" attributes="0"/>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                                  <Component id="N_Equipo_Label" alignment="1" min="-2" pref="144" max="-2" attributes="0"/>
-                                                  <Component id="Central_Label" alignment="1" min="-2" pref="144" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Component id="Central_Label8" min="-2" pref="151" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="JCombo_Central" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="JCombo_Equipo" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="JCombo_Estado" alignment="0" min="-2" pref="332" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <Component id="jLabel2" pref="182" max="32767" attributes="0"/>
-                                          <EmptySpace min="-2" pref="386" max="-2" attributes="0"/>
-                                      </Group>
+                              <Component id="Central_Label" alignment="0" min="-2" pref="144" max="-2" attributes="0"/>
+                              <Component id="JCombo_Central" alignment="0" min="-2" pref="332" max="-2" attributes="0"/>
+                              <Component id="N_Equipo_Label" alignment="0" min="-2" pref="144" max="-2" attributes="0"/>
+                              <Component id="JCombo_Equipo" alignment="0" min="-2" pref="332" max="-2" attributes="0"/>
+                              <Component id="Central_Label8" alignment="0" min="-2" pref="151" max="-2" attributes="0"/>
+                              <Component id="JCombo_Estado" min="-2" pref="332" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="102" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="N_Documento_Label" min="-2" pref="144" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="Numero_Gen" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="JCombo_Tipo" alignment="0" pref="332" max="32767" attributes="0"/>
+                                      <Component id="Tipo_Trabajo_Label" alignment="0" min="-2" pref="144" max="-2" attributes="0"/>
+                                      <Component id="Descripcion_Label" alignment="0" min="-2" pref="144" max="-2" attributes="0"/>
+                                      <Component id="JCombo_Descripcion" alignment="0" pref="332" max="32767" attributes="0"/>
                                   </Group>
+                                  <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Component id="Tipo_Trabajo_Label" min="-2" pref="144" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
-                                              <Component id="JCombo_Tipo" min="-2" pref="332" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" attributes="0">
-                                              <Component id="Descripcion_Label" min="-2" pref="144" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
-                                              <Component id="JCombo_Descripcion" min="-2" pref="332" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="1" attributes="0">
-                                                  <Component id="Fecha_Caducacion_Label" alignment="0" min="-2" pref="144" max="-2" attributes="0"/>
-                                                  <Component id="N_Documento_Label" min="-2" pref="144" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Component id="Fecha_Vigencia_Label" min="-2" pref="125" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="Numero_Gen" min="-2" pref="332" max="-2" attributes="0"/>
-                                              <Component id="jSeparator2" alignment="0" min="-2" pref="332" max="-2" attributes="0"/>
-                                              <Component id="Fecha_Vigencia_Text" alignment="0" min="-2" pref="183" max="-2" attributes="0"/>
-                                              <Component id="Fecha_Caduca_Text" alignment="0" min="-2" pref="183" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
+                                      <Component id="Fecha_Vigencia_Label" min="-2" pref="125" max="-2" attributes="0"/>
+                                      <Component id="Fecha_Caducacion_Label" alignment="0" min="-2" pref="144" max="-2" attributes="0"/>
+                                      <Component id="Fecha_Vigencia_Text" alignment="0" pref="270" max="32767" attributes="0"/>
+                                      <Component id="Fecha_Caduca_Text" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace min="139" pref="139" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -123,68 +90,61 @@
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                   <Component id="Titulo1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="JCombo_Central" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Central_Label" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Tipo_Trabajo_Label" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="JCombo_Tipo" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="N_Equipo_Label" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="JCombo_Equipo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Descripcion_Label" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="JCombo_Descripcion" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="N_Documento_Label" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Numero_Gen" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
-                      <Component id="Central_Label8" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="JCombo_Estado" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jSeparator2" min="-2" pref="12" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="Fecha_Vigencia_Text" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="Fecha_Vigencia_Label" alignment="0" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="Fecha_Caduca_Text" min="-2" max="-2" attributes="0"/>
-                              <Component id="Fecha_Caducacion_Label" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="Central_Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Tipo_Trabajo_Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Fecha_Vigencia_Label" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="43" max="32767" attributes="0"/>
-                          <Component id="Btn_Nuevo" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                          <Component id="Btn_Guardar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="JCombo_Central" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="JCombo_Tipo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
+                      <Component id="Fecha_Vigencia_Text" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="jLabel2" min="-2" pref="36" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="Descripcion_Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Fecha_Caducacion_Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="N_Equipo_Label" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="JCombo_Equipo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="JCombo_Descripcion" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="Central_Label8" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="N_Documento_Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="JCombo_Estado" min="-2" max="-2" attributes="0"/>
+                              <Component id="Numero_Gen" min="-2" pref="33" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Component id="Fecha_Caduca_Text" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="43" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel2">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Franklin Gothic Demi Cond" size="18" style="0"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="33" green="33" red="33" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="PANEL DE CONTROL"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="Titulo1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -306,6 +266,7 @@
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JComboBox" name="JCombo_Equipo">
@@ -330,23 +291,8 @@
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
           </AuxValues>
-        </Component>
-        <Component class="javax.swing.JTextField" name="Numero_Gen">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="33" green="33" red="33" type="rgb"/>
-            </Property>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="null"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="Numero_GenKeyTyped"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="JCombo_Tipo">
           <Properties>
@@ -465,7 +411,93 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JSeparator" name="jSeparator2">
+        <Component class="rojeru_san.RSMTextFull" name="Numero_Gen">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="33" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Franklin Gothic Medium Cond" size="14" style="0"/>
+            </Property>
+            <Property name="placeholder" type="java.lang.String" value="Escribe el Numero del Documento..."/>
+          </Properties>
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="Numero_GenKeyPressed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="JPanelBottom">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="0" y="450" width="1280" height="180"/>
+        </Constraint>
+      </Constraints>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="jLabel2" pref="136" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="1056" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="Btn_Guardar" min="-2" pref="182" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                                  <Component id="Btn_Update" min="-2" pref="186" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="Btn_Nuevo" min="-2" pref="182" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                  <Component id="jLabel2" min="-2" pref="36" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="Btn_Nuevo" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="Btn_Guardar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Btn_Update" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="23" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="jLabel2">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Franklin Gothic Demi Cond" size="18" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="33" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="PANEL DE CONTROL"/>
+          </Properties>
         </Component>
         <Component class="rojeru_san.RSButton" name="Btn_Nuevo">
           <Properties>
@@ -480,6 +512,9 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_NuevoActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Component class="rojeru_san.RSButton" name="Btn_Guardar">
           <Properties>
@@ -494,33 +529,34 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_GuardarActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
+        </Component>
+        <Component class="rojeru_san.RSButton" name="Btn_Update">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="99" red="ff" type="rgb"/>
+            </Property>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="MODIFICAR"/>
+            <Property name="colorHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="66" red="cc" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Franklin Gothic Demi Cond" size="14" style="0"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_UpdateActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
       </SubComponents>
-    </Container>
-    <Container class="javax.swing.JPanel" name="JPanelBottom">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="99" red="0" type="rgb"/>
-        </Property>
-      </Properties>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="590" width="1280" height="90"/>
-        </Constraint>
-      </Constraints>
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="1280" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="90" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-      </Layout>
     </Container>
     <Component class="javax.swing.JLabel" name="Banner_Header_Label">
       <Properties>
@@ -535,5 +571,30 @@
         </Constraint>
       </Constraints>
     </Component>
+    <Container class="javax.swing.JPanel" name="jPanel1">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="66" red="0" type="rgb"/>
+        </Property>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="0" y="630" width="1280" height="50"/>
+        </Constraint>
+      </Constraints>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="1280" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="50" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+    </Container>
   </SubComponents>
 </Form>

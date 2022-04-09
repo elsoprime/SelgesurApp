@@ -24,6 +24,7 @@ public class Documentos extends Equipos_Gen {
     private String HH_Prueba_Vacio;
     private String HH_Carga;
     private String HH_Final_PT;
+    private String Buscar;   
 
     public Documentos() {
 
@@ -124,6 +125,13 @@ public class Documentos extends Equipos_Gen {
 
     public void setHH_Final_PT(String HH_Final_PT) {
         this.HH_Final_PT = HH_Final_PT;
-    }   
+    }  
 
+    public String getBuscar() {
+        return Buscar;
+    }
+
+    public void setBuscar(String Buscar) {
+        this.Buscar = Buscar;
+    }   
 }

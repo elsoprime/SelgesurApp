@@ -6,7 +6,10 @@ package Views;
 
 import Controller.CRUD;
 import Components.Functions;
-import static Views.DashboardApp.Form_Update;
+import Models.Categoria_Documentos;
+import Models.Estado_Documentos;
+import java.awt.Point;
+import java.awt.event.MouseAdapter;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
@@ -21,8 +24,11 @@ public class List_Documents extends JDialog {
      *
      *
      */
+    public static UpdateDocumentsApp Form_Update;
     Functions Evento = new Functions();
     CRUD Consulta = new CRUD();
+    Categoria_Documentos Documento = new Categoria_Documentos();
+    Estado_Documentos Estado = new Estado_Documentos();
 
     public List_Documents() {
         initComponents();
@@ -53,11 +59,12 @@ public class List_Documents extends JDialog {
         jLabel3 = new javax.swing.JLabel();
         JPBtn_Crud = new javax.swing.JPanel();
         Btn_Update = new rojeru_san.RSButton();
-        rSButton4 = new rojeru_san.RSButton();
+        Btn_Cambiar = new rojeru_san.RSButton();
         rSButton3 = new rojeru_san.RSButton();
-        rSMTextFull1 = new rojeru_san.RSMTextFull();
+        Buscar_Text = new rojeru_san.RSMTextFull();
         JPBtn_Add = new javax.swing.JPanel();
         JBtn_Agregar_PT = new rojeru_san.RSButton();
+        JLabelInfo = new javax.swing.JLabel();
         BG_LIST = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -69,30 +76,12 @@ public class List_Documents extends JDialog {
         JTable_PT.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         JTable_PT.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "Central", "N° Equipo", "N° Documento", "Vigencia", "Caduca", "Tipo Documento", "Descripcion", "Status"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
-            };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
             }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         JTable_PT.setColorBackgoundHead(new java.awt.Color(22, 99, 212));
         JTable_PT.setColorBordeFilas(new java.awt.Color(255, 255, 255));
         JTable_PT.setColorBordeHead(new java.awt.Color(255, 255, 255));
@@ -116,24 +105,6 @@ public class List_Documents extends JDialog {
             }
         });
         jScrollPane1.setViewportView(JTable_PT);
-        if (JTable_PT.getColumnModel().getColumnCount() > 0) {
-            JTable_PT.getColumnModel().getColumn(0).setResizable(false);
-            JTable_PT.getColumnModel().getColumn(0).setPreferredWidth(100);
-            JTable_PT.getColumnModel().getColumn(1).setResizable(false);
-            JTable_PT.getColumnModel().getColumn(1).setPreferredWidth(70);
-            JTable_PT.getColumnModel().getColumn(2).setResizable(false);
-            JTable_PT.getColumnModel().getColumn(2).setPreferredWidth(70);
-            JTable_PT.getColumnModel().getColumn(3).setResizable(false);
-            JTable_PT.getColumnModel().getColumn(3).setPreferredWidth(70);
-            JTable_PT.getColumnModel().getColumn(4).setResizable(false);
-            JTable_PT.getColumnModel().getColumn(4).setPreferredWidth(70);
-            JTable_PT.getColumnModel().getColumn(5).setResizable(false);
-            JTable_PT.getColumnModel().getColumn(5).setPreferredWidth(90);
-            JTable_PT.getColumnModel().getColumn(6).setResizable(false);
-            JTable_PT.getColumnModel().getColumn(6).setPreferredWidth(120);
-            JTable_PT.getColumnModel().getColumn(7).setResizable(false);
-            JTable_PT.getColumnModel().getColumn(7).setPreferredWidth(60);
-        }
 
         jLabel2.setFont(new java.awt.Font("Franklin Gothic Demi Cond", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
@@ -156,11 +127,16 @@ public class List_Documents extends JDialog {
             }
         });
 
-        rSButton4.setBackground(new java.awt.Color(0, 153, 153));
-        rSButton4.setBorder(null);
-        rSButton4.setText("VER DOCUMENTO");
-        rSButton4.setColorHover(new java.awt.Color(0, 102, 102));
-        rSButton4.setFont(new java.awt.Font("Franklin Gothic Demi Cond", 0, 14)); // NOI18N
+        Btn_Cambiar.setBackground(new java.awt.Color(0, 153, 153));
+        Btn_Cambiar.setBorder(null);
+        Btn_Cambiar.setText("CAMBIAR ESTADO");
+        Btn_Cambiar.setColorHover(new java.awt.Color(0, 102, 102));
+        Btn_Cambiar.setFont(new java.awt.Font("Franklin Gothic Demi Cond", 0, 14)); // NOI18N
+        Btn_Cambiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_CambiarActionPerformed(evt);
+            }
+        });
 
         rSButton3.setBackground(new java.awt.Color(255, 0, 0));
         rSButton3.setBorder(null);
@@ -176,7 +152,7 @@ public class List_Documents extends JDialog {
                 .addGap(20, 20, 20)
                 .addComponent(Btn_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(rSButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Btn_Cambiar, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(rSButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(25, Short.MAX_VALUE))
@@ -187,15 +163,20 @@ public class List_Documents extends JDialog {
                 .addGap(30, 30, 30)
                 .addGroup(JPBtn_CrudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Btn_Update, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rSButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Btn_Cambiar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rSButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        rSMTextFull1.setBackground(new java.awt.Color(255, 255, 255));
-        rSMTextFull1.setForeground(new java.awt.Color(102, 102, 102));
-        rSMTextFull1.setFont(new java.awt.Font("Franklin Gothic Book", 0, 14)); // NOI18N
-        rSMTextFull1.setPlaceholder("Escribe aqui...................");
+        Buscar_Text.setBackground(new java.awt.Color(255, 255, 255));
+        Buscar_Text.setForeground(new java.awt.Color(102, 102, 102));
+        Buscar_Text.setFont(new java.awt.Font("Franklin Gothic Book", 0, 14)); // NOI18N
+        Buscar_Text.setPlaceholder("Escribe aqui...................");
+        Buscar_Text.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Buscar_TextKeyPressed(evt);
+            }
+        });
 
         JPBtn_Add.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -227,6 +208,8 @@ public class List_Documents extends JDialog {
                 .addGap(14, 14, 14))
         );
 
+        JLabelInfo.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 18)); // NOI18N
+
         javax.swing.GroupLayout JPanel_HeaderLayout = new javax.swing.GroupLayout(JPanel_Header);
         JPanel_Header.setLayout(JPanel_HeaderLayout);
         JPanel_HeaderLayout.setHorizontalGroup(
@@ -240,13 +223,14 @@ public class List_Documents extends JDialog {
                         .addComponent(JPBtn_Crud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(72, 72, 72)
                         .addGroup(JPanel_HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(rSMTextFull1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Buscar_Text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3)))
                     .addGroup(JPanel_HeaderLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addGroup(JPanel_HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JLabelInfo))))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         JPanel_HeaderLayout.setVerticalGroup(
@@ -259,13 +243,15 @@ public class List_Documents extends JDialog {
                     .addGroup(JPanel_HeaderLayout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rSMTextFull1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Buscar_Text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(JPanel_HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(JPBtn_Crud, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(JPBtn_Add, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(224, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(JLabelInfo)
+                .addContainerGap(226, Short.MAX_VALUE))
         );
 
         getContentPane().add(JPanel_Header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 1370, 720));
@@ -281,8 +267,8 @@ public class List_Documents extends JDialog {
 
         try {
             AddDocumentsApp JForm_AddPT = new AddDocumentsApp(this, true);
+            AddDocumentsApp.Btn_Update.setVisible(false);
             JForm_AddPT.setVisible(true);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -301,32 +287,74 @@ public class List_Documents extends JDialog {
     }//GEN-LAST:event_JTable_PTComponentResized
 
     private void JTable_PTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTable_PTMouseClicked
-        int Id_Central = 0;
-        int Id_Equipo = 0;
-        int Id_Categoria = 0;
-        int Id_Estado = 0;
-        String Numero, Descripcion;
-        int Selected = JTable_PT.rowAtPoint(evt.getPoint());
-        
-        
-        
+        try {
+            int Fila = JTable_PT.rowAtPoint(evt.getPoint());
+            //Documento.setCentral(JTable_PT.getValueAt(Fila, 0).toString());
+            //Documento.setNumero(JTable_PT.getValueAt(Fila, 1).toString());
+            //Documento.setNumero_Doc(JTable_PT.getValueAt(Fila, 2).toString());
+            //UpdateDocumentsApp.JComboCentral.setSelectedItem(Documento.getCentral());
+            UpdateDocumentsApp.JComboCentral.setSelectedItem(String.valueOf(JTable_PT.getValueAt(Fila, 0).toString()));
+            UpdateDocumentsApp.JComboEstado.setSelectedItem(String.valueOf(JTable_PT.getValueAt(Fila, 7).toString()));
+            //UpdateDocumentsApp.JComboEquipo.setSelectedItem(Documento.getNumero());
+            UpdateDocumentsApp.Numero_Gen.setText(Documento.getNumero_Doc());
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "NO SE HA SELECCIONADO UNA FILA", "ADVERTENCIA" + e, JOptionPane.WARNING_MESSAGE);
+        }
 
 
     }//GEN-LAST:event_JTable_PTMouseClicked
 
     private void Btn_UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_UpdateActionPerformed
-        int fila = JTable_PT.getSelectedRow();
+
         try {
             UpdateDocumentsApp UpdateForm = new UpdateDocumentsApp(this, true);
-            if (fila == -1) {
+            AddDocumentsApp EditForm = new AddDocumentsApp(this, true);
+            int Fila = JTable_PT.getSelectedRow();
+            if (Fila == -1) {
                 JOptionPane.showMessageDialog(null, "POR FAVOR, SELECCIONA UN REGISTRO PARA ACTUALIZAR", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
             } else {
-                UpdateForm.setVisible(true);
+                AddDocumentsApp.Btn_Guardar.setVisible(false);
+                EditForm.setVisible(true);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }//GEN-LAST:event_Btn_UpdateActionPerformed
+
+    private void Buscar_TextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Buscar_TextKeyPressed
+        Documento.setBuscar(Buscar_Text.getText());
+        if (Consulta.busquedaDocTabla(Documento, JTable_PT)) {
+            //JLabelInfo.setText("SE ENCONTRARON DATOS EN SU BUSQUEDA");
+        } else {
+            JLabelInfo.setText("NO SE ENCONTRARON COINCIDENCIAS EN LA BUSQUEDA");
+        }
+    }//GEN-LAST:event_Buscar_TextKeyPressed
+
+    private void Btn_CambiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_CambiarActionPerformed
+        int Fila = JTable_PT.getSelectedRow();
+        try {
+            UpdateDocumentsApp UpdateForm = new UpdateDocumentsApp(this, true);
+            if (Fila == -1) {
+                JOptionPane.showMessageDialog(null, "POR FAVOR, SELECCIONA UN REGISTRO PARA CAMBIAR EL ESTADO DEL DOCUMENTO", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+            } else {
+
+                Documento.setCentral(JTable_PT.getValueAt(Fila, 0).toString());
+                Documento.setNumero(JTable_PT.getValueAt(Fila, 1).toString());
+                Documento.setNumero_Doc(JTable_PT.getValueAt(Fila, 2).toString());
+
+                UpdateDocumentsApp.JComboCentral.setSelectedItem(Documento.getCentral());
+                UpdateDocumentsApp.JComboEquipo.setSelectedItem(Documento.getNumero());
+                UpdateDocumentsApp.Numero_Gen.setText(Documento.getNumero_Doc());
+
+                System.out.println(Documento.getCentral());
+                UpdateForm.setVisible(true);
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_Btn_CambiarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -372,17 +400,18 @@ public class List_Documents extends JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BG_LIST;
+    private rojeru_san.RSButton Btn_Cambiar;
     private rojeru_san.RSButton Btn_Update;
+    private rojeru_san.RSMTextFull Buscar_Text;
     private rojeru_san.RSButton JBtn_Agregar_PT;
+    private javax.swing.JLabel JLabelInfo;
     private javax.swing.JPanel JPBtn_Add;
     private javax.swing.JPanel JPBtn_Crud;
     private javax.swing.JPanel JPanel_Header;
-    private rojerusan.RSTableMetro JTable_PT;
+    public static rojerusan.RSTableMetro JTable_PT;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private rojeru_san.RSButton rSButton3;
-    private rojeru_san.RSButton rSButton4;
-    private rojeru_san.RSMTextFull rSMTextFull1;
     // End of variables declaration//GEN-END:variables
 }
